@@ -117,3 +117,23 @@ app.*.symbols
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
+
+
+# Firebase generated files
+firebase_app_id_file.json      # sadrži privatne app ID i ključeve
+google-services.json           # Android config fajl (može da bude .env protected)
+GoogleService-Info.plist       # iOS config fajl (može da bude .env protected)
+.firebase/
+
+# Firebase emulators
+.firebaserc
+firebase-debug.log
+
+# IDE / Editor
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
