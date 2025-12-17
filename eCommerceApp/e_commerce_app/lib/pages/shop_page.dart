@@ -61,9 +61,9 @@ class _ShopPageState extends State<ShopPage> {
                   child: TextField(
                     controller: _controller,
                     decoration: const InputDecoration(
-                      hintText: "Search",
                       prefixIcon: Icon(Icons.search),
                     ),
+
                     onSubmitted: (_) => _searchProducts(),
                   ),
                 ),

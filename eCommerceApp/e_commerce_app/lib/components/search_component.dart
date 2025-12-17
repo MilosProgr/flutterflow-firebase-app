@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/components/my_product_tile.dart';
 import 'package:e_commerce_app/models/product.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,10 @@ class _GFGState extends State<GFG> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Pretrazi"),
+        title: Text(
+          "Pretrazi",
+          style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -76,7 +80,7 @@ class CustomSearchDelegate extends SearchDelegate {
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
         var result = matchQuery[index];
-        return ListTile(title: Text(result.toString()));
+        return MyProductTile(product: result);
       },
     );
   }
@@ -85,17 +89,24 @@ class CustomSearchDelegate extends SearchDelegate {
   // process at the runtime
   @override
   Widget buildSuggestions(BuildContext context) {
+    // Ako je query prazan, prikazujemo sve proizvode
     List<Product> matchQuery = [];
-    for (var fruit in products) {
-      if (fruit.name.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(fruit);
-      }
+    if (query.isEmpty) {
+      matchQuery = products;
+    } else {
+      matchQuery = products
+          .where(
+            (product) =>
+                product.name.toLowerCase().contains(query.toLowerCase()),
+          )
+          .toList();
     }
+
     return ListView.builder(
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return ListTile(title: Text(result.toString()));
+        final product = matchQuery[index];
+        return MyProductTile(product: product); // koristi svoj tile
       },
     );
   }
