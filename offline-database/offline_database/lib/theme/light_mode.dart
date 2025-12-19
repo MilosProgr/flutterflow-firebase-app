@@ -8,3 +8,12 @@ ThemeData lightMode = ThemeData(
     inversePrimary: Colors.grey.shade700,
   ),
 );
+
+ThemeData darkMode = ThemeData(
+  colorScheme: ColorScheme.dark(
+    background: Colors.black,
+    primary: Colors.green,
+    secondary: Colors.black,
+    inversePrimary: Colors.blue,
+  ),
+);
